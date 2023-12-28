@@ -1,8 +1,5 @@
 from bll.cities_reducer import state as cities_state
 
-CHANGE_PATH_ACTION = 'CHANGE_PATH_ACTION'
-READ_COMMAND_ACTION = 'READ_COMMAND_ACTION'
-
 state = {
     'path': '/',
     'command': ''
@@ -18,14 +15,16 @@ def reducer(action):
                 state['path'] = '/'
             elif state['command'] == 'помощь':
                 state['path'] = '/ помощь'
-        
+            elif state['command'] == 'рег ап':
+                state['path'] = '/ рег ап'
+                 
         case 'READ_COMMAND_ACTION':
             state['command'] = action['command']
     
 
 def changePathAction():
-    reducer({'type': CHANGE_PATH_ACTION, 'cities': cities_state['cities']})
+    reducer({'type': 'CHANGE_PATH_ACTION', 'cities': cities_state['cities']})
 
 
 def readCommandAction(stdscr, command):
-    reducer({'type': READ_COMMAND_ACTION, 'stdscr': stdscr, 'command': command})
+    reducer({'type': 'READ_COMMAND_ACTION', 'stdscr': stdscr, 'command': command})

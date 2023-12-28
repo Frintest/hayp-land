@@ -1,5 +1,3 @@
-CREATE_CITY_ACTION = 'CREATE_CITY_ACTION'
-
 state = {
     'cities': {}
 }
@@ -11,4 +9,4 @@ def reducer(action):
         
 
 def createCityAction(city):
-    reducer({'type': CREATE_CITY_ACTION, 'city': city})
+    reducer({'type': 'CREATE_CITY_ACTION', 'city': city})

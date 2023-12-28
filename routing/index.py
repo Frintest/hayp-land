@@ -1,5 +1,6 @@
 from ui.pages.help import helpPage
 from ui.pages.cities import citiesPage
+from ui.pages.reg_copyright import reg_copyright_page
 from bll.state import state
 
 def routing(stdscr):
@@ -14,3 +15,5 @@ def routing(stdscr):
         citiesPage(stdscr, cities_copy)
     elif path == '/ помощь':
         helpPage(stdscr)
+    elif path == '/ рег ап':
+        reg_copyright_page(stdscr)
