@@ -1,15 +1,14 @@
-from ui.utilities.color_pair import setColorPair
+from ui.utilities.color_pair import set_color_pair
 
-def citiesPage(stdscr, cities):
+def cities_page(cities):
     for city_name, city_info in cities.items():
-        stdscr.addstr(f"\n[{city_name}]\n", setColorPair(city_info['display_color']))
+        print(set_color_pair(city_info['display_color']) + f"[{city_name}]")
 
-        def getCityItem(city_item):
+        def get_city_item(city_item):
             return ' | '.join(list(map(lambda item: item, city_item)))
 
-        def printCityItem(city_item, title):
-            stdscr.addstr(f'   {title}:\t')
-            stdscr.addstr(f'{city_item}\n')
+        def print_city_item(title, city_item):
+            print(set_color_pair('RESET') + f'   {title}:\t{get_city_item(city_item)}')
 
-        printCityItem(getCityItem(city_info['players']), 'Жители')
-        printCityItem(getCityItem(city_info['structures']), 'Структуры')
+        print_city_item('Жители', city_info['players'])
+        print_city_item('Структуры', city_info['structures'])

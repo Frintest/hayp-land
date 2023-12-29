@@ -1,29 +1,23 @@
-import curses
+from colorama import Fore
 
-def setColorPair(color_name):
+def set_color_pair(color_name):
     match color_name:
-        case 'WHITE':
-            pair_num = 1
-            curses.init_pair(pair_num, curses.COLOR_WHITE, curses.COLOR_BLACK)
-        case 'MAGENTA':
-            pair_num = 2
-            curses.init_pair(pair_num, curses.COLOR_MAGENTA, curses.COLOR_BLACK)
-        case 'YELLOW':
-            pair_num = 3
-            curses.init_pair(pair_num, curses.COLOR_YELLOW, curses.COLOR_BLACK)
         case 'RED':
-            pair_num = 4
-            curses.init_pair(pair_num, curses.COLOR_RED, curses.COLOR_BLACK)
+            color_out = Fore.RED
         case 'GREEN':
-            pair_num = 5
-            curses.init_pair(pair_num, curses.COLOR_GREEN, curses.COLOR_BLACK)
-        case  'BLUE':
-            pair_num = 6
-            curses.init_pair(pair_num, curses.COLOR_BLUE, curses.COLOR_BLACK)
-        case  'CYAN':
-            pair_num = 7
-            curses.init_pair(pair_num, curses.COLOR_CYAN, curses.COLOR_BLACK)
-        case '*WHITE_ON_RED':
-            pair_num = 100
-            curses.init_pair(pair_num, curses.COLOR_WHITE, curses.COLOR_RED)
-    return curses.color_pair(pair_num)
+            color_out = Fore.GREEN
+        case 'BLUE':
+            color_out = Fore.BLUE
+        case 'YELLOW':
+            color_out = Fore.YELLOW
+        case 'MAGENTA':
+            color_out = Fore.MAGENTA
+        case 'CYAN':
+            color_out = Fore.CYAN
+        case 'WHITE':
+            color_out = Fore.WHITE
+        case 'APP':
+            color_out = Fore.LIGHTGREEN_EX
+        case 'RESET':
+            color_out = Fore.RESET
+    return color_out

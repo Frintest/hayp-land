@@ -1,19 +1,20 @@
-from ui.pages.help import helpPage
-from ui.pages.cities import citiesPage
+from ui.pages.help import help_page
+from ui.pages.cities import cities_page
 from ui.pages.patent import patent_page
 from bll.state import state
+from ui.utilities.color_pair import set_color_pair
 
-def routing(stdscr):
+def routing():
     path = state['routing']['path']
     cities = state['cities']['cities']
     
     if path == '/':
-        stdscr.addstr('==== Города ==== \n')
-        citiesPage(stdscr, cities)
+        print(set_color_pair('RESET') + '==== Города ====\n')
+        cities_page(cities)
     elif '/ город:' in path:
         cities_copy = dict(filter(lambda item: item[0] == path[9:], cities.items()))
-        citiesPage(stdscr, cities_copy)
+        cities_page(cities_copy)
     elif path == '/ помощь':
-        helpPage(stdscr)
+        help_page()
     elif path == '/ рег ап':
-        patent_page(stdscr)
+        patent_page()

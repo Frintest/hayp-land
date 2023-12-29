@@ -9,5 +9,5 @@ def reducer(action):
             state['cities'][action['city']['name']] = action['city']
         
 
-def createCityAction(city):
+def create_city_action(city):
     reducer({'type': 'CREATE_CITY_ACTION', 'city': city})

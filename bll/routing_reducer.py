@@ -22,9 +22,9 @@ def reducer(action):
             state['command'] = action['command']
     
 
-def changePathAction():
+def change_path_action():
     reducer({'type': 'CHANGE_PATH_ACTION', 'cities': cities_state['cities']})
 
 
-def readCommandAction(stdscr, command):
-    reducer({'type': 'READ_COMMAND_ACTION', 'stdscr': stdscr, 'command': command})
+def read_command_action(command):
+    reducer({'type': 'READ_COMMAND_ACTION', 'command': command})

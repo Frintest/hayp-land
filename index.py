@@ -1,10 +1,10 @@
-import curses
+import os
 from routing.index import routing
-from bll.routing_reducer import changePathAction, readCommandAction
-from bll.cities_reducer import createCityAction
-from ui.common.command import readCommand
+from bll.routing_reducer import change_path_action, read_command_action
+from bll.cities_reducer import create_city_action
+from ui.common.command import read_command
 
-createCityAction(
+create_city_action(
     {
         'name': 'АтлантCity',
         'display_color': 'CYAN',
@@ -17,19 +17,11 @@ createCityAction(
 )
 
 
-def render(stdscr):
+def render():
     while True:
-        stdscr.clear()
-        routing(stdscr)
-        readCommandAction(stdscr, readCommand(stdscr))
-        changePathAction()
-        stdscr.refresh()
+        os.system("cls")
+        routing()
+        read_command_action(read_command())
+        change_path_action()
 
-
-def main(stdscr):
-    curses.echo()
-    curses.nocbreak()
-    render(stdscr)
-
-
-curses.wrapper(main)
+render()
