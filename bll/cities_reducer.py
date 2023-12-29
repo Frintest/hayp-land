@@ -2,6 +2,7 @@ state = {
     'cities': {}
 }
 
+
 def reducer(action):
     match action['type']:
         case 'CREATE_CITY_ACTION':
