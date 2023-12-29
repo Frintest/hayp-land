@@ -9,7 +9,7 @@ state = {
 def reducer(action):
     match action['type']:
         case 'CHANGE_PATH_ACTION':
-            if state['command'][6:] in action['cities'] and state['command'][:6] == 'город ':
+            if state['command'][6:] in cities_state['cities'] and state['command'][:6] == 'город ':
                 state['path'] = f'/ город: {state["command"][6:]}'
             elif state['command'] == 'город *':
                 state['path'] = '/'
@@ -23,7 +23,7 @@ def reducer(action):
     
 
 def change_path_action():
-    reducer({'type': 'CHANGE_PATH_ACTION', 'cities': cities_state['cities']})
+    reducer({'type': 'CHANGE_PATH_ACTION'})
 
 
 def read_command_action(command):
