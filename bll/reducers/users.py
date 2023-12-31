@@ -1,39 +1,52 @@
-from modules.gen_hash import check_valid_user, gen_hash
+from modules.gen_hash import check_valid_user, calculate_mw_hash, calculate_hash
 
 state = {}
 
 
 def reducer(action):
     match action['type']:
-        case 'ADD_PLAYER':
+        case 'CREATE_USER':
             state[action['user_name']] = {
                 'user_name': action['user_name'],
                 'user_hashpass': action['user_hashpass'],
-                'patent_block': {}
+                'patent_chain': [
+                    {
+                        'hash': '0',
+                        'desc': 'Genesis block'
+                    }
+                ]
             }
         
-        case 'GET_HASH':
+        case 'CALCULATE_MW_HASH_ACTION':
             for val in state.values():
                 if check_valid_user(action['user_name'], action['user_pass'], state):
-                    state[action['user_name']]['last_hash'] = gen_hash(action['user_pass'])
+                    res = calculate_mw_hash(action['user_pass'])
+                    state[action['user_name']]['last_hash'] = res['mw_hash']
+                    #state[action['user_name']]['noise'] = res['noise']
         
-        case 'REG_PATENT':
-            for val in state.values():
-                if val['user_name'] == action['user_name']:
-                    state[action['user_name']]['patent_block'][action['hash']] = {
-                        'desc': action['desc']
-                    }
+        case 'CREATE_PATENT':
+            def is_user_valid():
+                for val in state.values():
+                    if val['user_name'] == action['user_name']:
+                        return True
+                return False
+            
+            if is_user_valid():
+                chain = state[action['user_name']]['patent_chain']
+                chain.append({
+                    'hash': calculate_hash(action['mw_hash'], action['desc']),
+                    'previous_hash': chain[-1]['hash'],
+                    'desc': action['desc']
+                })
         
         
-def add_player_action(user_name, user_hashpass):
-    reducer({'type': 'ADD_PLAYER', 'user_name': user_name, 'user_hashpass': user_hashpass})
+def create_user_action(user_name, user_hashpass):
+    reducer({'type': 'CREATE_USER', 'user_name': user_name, 'user_hashpass': user_hashpass})
+
+
+def calculate_mw_hash_action(user_name, user_pass):
+    reducer({'type': 'CALCULATE_MW_HASH_ACTION', 'user_name': user_name, 'user_pass': user_pass})
     
-add_player_action('f', 'a0b37b8bfae8e71330bd8e278e4a45ca916d00475dd8b85e9352533454c9fec8')
 
-
-def get_hash_action(user_name, user_pass):
-    reducer({'type': 'GET_HASH', 'user_name': user_name, 'user_pass': user_pass})
-    
-
-def reg_patent_action(user_name, patent_hash, desc):
-    reducer({'type': 'REG_PATENT', 'user_name': user_name, 'hash': patent_hash, 'desc': desc})
+def create_patent_action(user_name, mw_hash, desc):
+    reducer({'type': 'CREATE_PATENT', 'user_name': user_name, 'mw_hash': mw_hash, 'desc': desc})
