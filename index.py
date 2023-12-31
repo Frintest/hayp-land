@@ -1,14 +1,14 @@
 import os
 from routing.index import routing
-from bll.routing_reducer import change_path_action, read_command_action
-from bll.cities_reducer import create_city_action
+from bll.reducers.routing import change_path_action, read_command_action
+from bll.reducers.cities import create_city_action
 from ui.common.command import read_command
 
 create_city_action(
     {
         'name': 'АтлантCity',
         'display_color': 'CYAN',
-        'players': {
+        'users': {
             'frunkers': {},
             'кирилл': {}
         },

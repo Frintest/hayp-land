@@ -10,5 +10,5 @@ def cities_page(cities):
         def print_city_item(title, city_item):
             print(set_color_pair('RESET') + f'   {title}:\t{get_city_item(city_item)}')
 
-        print_city_item('Жители', city_info['players'])
+        print_city_item('Жители', city_info['users'])
         print_city_item('Структуры', city_info['structures'])

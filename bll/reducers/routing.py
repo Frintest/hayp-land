@@ -1,4 +1,4 @@
-from bll.cities_reducer import state as cities_state
+from bll.reducers.cities import state as cities_state
 
 state = {
     'path': '/',

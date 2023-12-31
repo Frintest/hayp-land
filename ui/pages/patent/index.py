@@ -1,5 +1,5 @@
 from ui.utilities.color_pair import set_color_pair
-from bll.players_reducer import get_hash_action, reg_patent_action
+from bll.reducers.users import get_hash_action, reg_patent_action
 from bll.state import state
 
 def patent_page():
@@ -15,5 +15,4 @@ def patent_page():
             print(state['users'][user_name])
         except:
             print(set_color_pair('RED') + 'ERR: Неверная команда или формат входных данных\n', end='')
-        
         
