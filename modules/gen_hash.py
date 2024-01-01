@@ -5,7 +5,7 @@ def calculate_user_hashpass(user_pass):
     return sha3_256(user_pass.encode()).hexdigest()
 
 
-def check_valid_user(user_name, user_pass, state):
+def is_user_valid(user_name, user_pass, state):
     for val in state.values():
         if val['user_name'] == user_name and val['user_hashpass'] == calculate_user_hashpass(user_pass):
             return True

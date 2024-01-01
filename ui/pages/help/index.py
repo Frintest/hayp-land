@@ -7,10 +7,6 @@ def help_page():
         print(set_color_pair('RESET') + f'{desc:<27}', end='')
         print(set_color_pair('APP') + f'{command}')
     
-    add_global_command('Отобразить все города', 'город *')
-    add_global_command('Отобразить город', 'город [название города]')
-    add_global_command('Зарегестрировать патент', 'рег ап')
-    
     for desc, command in state['help']['global'].items():
         print_command(desc, command)
     

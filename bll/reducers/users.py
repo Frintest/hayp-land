@@ -1,4 +1,4 @@
-from modules.gen_hash import check_valid_user, calculate_mw_hash, calculate_hash, is_chain_valid
+from modules.gen_hash import is_user_valid, calculate_mw_hash, calculate_hash, is_chain_valid
 
 state = {}
 
@@ -19,20 +19,20 @@ def reducer(action):
         
         case 'CALCULATE_MW_HASH_ACTION':
             for val in state.values():
-                if check_valid_user(action['user_name'], action['user_pass'], state):
+                if is_user_valid(action['user_name'], action['user_pass'], state):
                     res = calculate_mw_hash(action['user_pass'])
                     state[action['user_name']]['last_hash'] = res['mw_hash']
                     #state[action['user_name']]['noise'] = res['noise']
                     
         
         case 'CREATE_PATENT':
-            def is_user_valid():
+            def is_user_name_valid():
                 for val in state.values():
                     if val['user_name'] == action['user_name']:
                         return True
                 return False
             
-            if is_user_valid():
+            if is_user_name_valid():
                 chain = state[action['user_name']]['patent_chain']
                 chain.append({
                     'hash': calculate_hash(action['mw_hash'], chain[-1]['hash'], action['desc']),
@@ -41,7 +41,7 @@ def reducer(action):
                 })
                 
         case 'IS_CHAIN_VALID':
-            if check_valid_user(action['user_name'], action['user_pass'], state):
+            if is_user_valid(action['user_name'], action['user_pass'], state):
                 state[action['user_name']]['is_valid'] = is_chain_valid(state[action['user_name']]['patent_chain'], action['user_pass'])
         
         

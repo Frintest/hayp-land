@@ -1,21 +1,16 @@
 import os
 from routing.index import routing
 from bll.reducers.routing import change_path_action, read_command_action
-from bll.reducers.cities import create_city_action
 from ui.common.command import read_command
+from storage.cities import create_cities
+from storage.users import create_users
+from storage.patent import create_patents
+from storage.help import create_help_commands
 
-create_city_action(
-    {
-        'name': 'АтлантCity',
-        'display_color': 'CYAN',
-        'users': {
-            'frunkers': {},
-            'кирилл': {}
-        },
-        'structures': {'Федеральное экономическое хранилище (ФЭХ)': {}}
-    }
-)
-
+create_help_commands()
+create_cities()
+create_users()
+create_patents()
 
 def render():
     while True:
