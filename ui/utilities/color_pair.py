@@ -2,6 +2,10 @@ from colorama import Fore
 
 def set_color_pair(color_name):
     match color_name:
+        case 'APP':
+            color_out = Fore.LIGHTGREEN_EX
+        case 'RESET':
+            color_out = Fore.RESET
         case 'RED':
             color_out = Fore.RED
         case 'GREEN':
@@ -16,8 +20,5 @@ def set_color_pair(color_name):
             color_out = Fore.CYAN
         case 'WHITE':
             color_out = Fore.WHITE
-        case 'APP':
-            color_out = Fore.LIGHTGREEN_EX
-        case 'RESET':
-            color_out = Fore.RESET
+        
     return color_out

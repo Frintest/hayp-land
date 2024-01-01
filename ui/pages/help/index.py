@@ -1,5 +1,4 @@
 from ui.utilities.color_pair import set_color_pair
-from bll.reducers.help import add_global_command
 from bll.state import state
 
 def help_page():
