@@ -1,5 +1,5 @@
 from ui.utilities.color_pair import set_color_pair
-from bll.reducers.users import calculate_mw_hash_action, create_patent_action, create_user_action
+from bll.reducers.users import calculate_mw_hash_action, create_patent_action, create_user_action, is_chain_valid_action
 from bll.state import state
 
 def patent_page():
@@ -8,6 +8,9 @@ def patent_page():
     
     create_user_action('f', 'a0b37b8bfae8e71330bd8e278e4a45ca916d00475dd8b85e9352533454c9fec8')
     create_patent_action('f', 'a0b37b8bfae8e71330bd8e278e4a45ca916d00475dd8b85e9352533454c9fec8' ,'первое описание')
+    #state['users']['f']['patent_chain'][0]['hash'] = 'aboba'
+    is_chain_valid_action('f', 'f')
+    print(state['users']['f']['is_valid'])
     
     print(state['users']['f']['patent_chain'])
     if state['routing']['command'] != 'рег ап':
