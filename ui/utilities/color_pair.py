@@ -1,6 +1,7 @@
 from colorama import Fore
 
-def set_color_pair(color_name):
+
+def set_color_pair(color_name: str):
     match color_name:
         case 'APP':
             color_out = Fore.LIGHTGREEN_EX

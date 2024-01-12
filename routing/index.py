@@ -3,6 +3,7 @@ from ui.pages.cities.index import cities_page
 from ui.pages.patent.index import patent_page
 from bll.state import state
 
+
 def routing():
     path = state['routing']['path']
     path_prefix = state['routing']['path_prefix']

@@ -7,6 +7,7 @@ from storage.users import create_users
 from storage.patent import create_patents
 from storage.help import create_help_commands
 
+
 create_help_commands()
 create_cities()
 create_users()
@@ -18,5 +19,6 @@ def render():
         routing()
         read_command_action(read_command())
         change_path_action()
+
 
 render()
