@@ -1,6 +1,6 @@
 from modules.cities.calculate_hash import calculate_user_hashpass, calculate_mw_hash, calculate_hash
 
-def is_user_valid(user_namea: str, user_pass: str, state: dict) -> bool:
+def is_user_valid(user_name: str, user_pass: str, state: dict) -> bool:
     if user_name in state.keys() and state[user_name]['user_hashpass'] == calculate_user_hashpass(user_pass):
         return True
     return False

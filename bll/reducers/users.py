@@ -4,7 +4,7 @@ from modules.cities.is_valid import is_user_valid, is_chain_valid
 state = {}
 
 
-def reducer(action):
+def reducer(action: dict):
     match action['type']:
         case 'CREATE_USER':
             state[action['user_name']] = {
@@ -22,19 +22,12 @@ def reducer(action):
         case 'CALCULATE_MW_HASH_ACTION':
             if is_user_valid(action['user_name'], action['user_pass'], state):
                 res = calculate_mw_hash(action['user_pass'])
-                state[action['user_name']]['last_hash'] = res['mw_hash']
+                state[action['user_name']]['draft_hash'] = res['mw_hash']
                 #state[action['user_name']]['noise'] = res['noise']
                 
         
         case 'CREATE_PATENT':
-            def is_user_name_valid():
-                for val in state.values():
-                    if val['user_name'] == action['user_name']:
-                        return True
-                return False
-            
-            
-            if is_user_name_valid():
+            if state[action['user_name']]:
                 chain = state[action['user_name']]['patent_chain']
                 chain.append({
                     'hash': calculate_hash(action['mw_hash'], chain[-1]['hash'], action['desc']),
@@ -55,21 +48,21 @@ def reducer(action):
                 state['is_user_valid'] = False
         
         
-def create_user_action(user_name, user_hashpass):
+def create_user_action(user_name: str, user_hashpass: str):
     reducer({'type': 'CREATE_USER', 'user_name': user_name, 'user_hashpass': user_hashpass})
 
 
-def calculate_mw_hash_action(user_name, user_pass):
+def calculate_mw_hash_action(user_name: str, user_pass: str):
     reducer({'type': 'CALCULATE_MW_HASH_ACTION', 'user_name': user_name, 'user_pass': user_pass})
 
 
-def create_patent_action(user_name, mw_hash, desc):
+def create_patent_action(user_name: str, mw_hash: str, desc: str):
     reducer({'type': 'CREATE_PATENT', 'user_name': user_name, 'mw_hash': mw_hash, 'desc': desc})
 
 
-def is_chain_valid_action(user_name, user_pass):
+def is_chain_valid_action(user_name: str, user_pass: str):
     reducer({'type': 'IS_CHAIN_VALID', 'user_name': user_name, 'user_pass': user_pass})
 
 
-def is_user_valid_action(user_name, user_pass):
+def is_user_valid_action(user_name: str, user_pass: str):
     reducer({'type': 'IS_USER_VALID', 'user_name': user_name, 'user_pass': user_pass})

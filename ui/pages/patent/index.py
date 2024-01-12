@@ -9,10 +9,15 @@ def patent_page():
     #is_chain_valid_action('f', 'f')
     
     if state['routing']['command'] != 'рег ап':
-        user_name, user_pass = state['routing']['command'].split(' ')
-        is_user_valid_action(user_name, user_pass)
-    
-        if state['users']['is_user_valid']:
-            calculate_mw_hash_action(user_name, user_pass)
-            print(set_color_pair('RESET') + 'Скопируйте промежуточный хеш: ', end='')
-            print(set_color_pair('APP') + state['users'][user_name]['last_hash'])
+        try:
+            user_name, user_pass = state['routing']['command'].split(' ')
+            
+            is_user_valid_action(user_name, user_pass)
+            if state['users']['is_user_valid']:
+                calculate_mw_hash_action(user_name, user_pass)
+                print(set_color_pair('RESET') + 'Скопируйте промежуточный хеш: ', end='')
+                print(set_color_pair('APP') + state['users'][user_name]['draft_hash'])
+            else:
+                print(set_color_pair('RED') + 'ERR: Неверные данные пользователя')
+        except:
+            print(set_color_pair('RED') + 'ERR: Несуществующая команда или неверный формат входных данных\n', end='')
