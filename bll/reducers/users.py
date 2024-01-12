@@ -1,5 +1,5 @@
-from modules.cities.calculate_hash import calculate_mw_hash, calculate_hash
-from modules.cities.is_valid import is_user_valid, is_chain_valid
+from modules.patent.calculate_hash import calculate_mw_hash, calculate_hash
+from modules.patent.is_valid import is_user_valid, is_chain_valid
 
 
 state = {}
