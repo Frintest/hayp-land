@@ -20,9 +20,9 @@ def patent_page():
                     print(set_color_pair('RESET') + 'Скопируйте промежуточный хеш: ', end='')
                     print(set_color_pair('APP') + state['users'][user_name]['draft_hash'])
                 else:
-                    print(set_color_pair('RED') + 'ERR: Невалидный блокчейн: ваша история патентов кем-то изменена.')
-                    print(set_color_pair('RED') + 'Чтобы продолжить работать с системой патентов, обратитесь к администрации HaypLand.')
+                    print(set_color_pair('RED') + 'ERR: Ваша история патентов кем-то изменена.')
+                    print(set_color_pair('RED') + 'Чтобы продолжить работать с системой патентов, обратитесь к администрации HaypLand')
             else:
                 print(set_color_pair('RED') + 'ERR: Неверные данные пользователя')
         except:
-            print(set_color_pair('RED') + 'ERR: Несуществующая команда или неверный формат входных данных\n', end='')
+            print(set_color_pair('RED') + 'ERR: Несуществующая команда или невалидный формат входных данных\n', end='')
