@@ -21,5 +21,5 @@ def set_color_pair(color_name: str):
             color_out = Fore.CYAN
         case 'WHITE':
             color_out = Fore.WHITE
-        
+
     return color_out

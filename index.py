@@ -13,6 +13,7 @@ create_cities()
 create_users()
 create_patents()
 
+
 def render():
     while True:
         os.system("cls")

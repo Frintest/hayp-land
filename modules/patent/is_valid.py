@@ -1,4 +1,4 @@
-from modules.cities.calculate_hash import calculate_user_hashpass, calculate_mw_hash, calculate_hash
+from modules.patent.calculate_hash import calculate_user_hashpass, calculate_mw_hash, calculate_hash
 
 
 def is_user_valid(user_name: str, user_pass: str, state: dict) -> bool:

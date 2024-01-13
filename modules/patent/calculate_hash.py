@@ -7,11 +7,9 @@ def calculate_user_hashpass(user_pass: str) -> str:
 
 
 def calculate_mw_hash(user_pass: str):
-    #noise = str(randint(0, 9))
     in_str = user_pass
     return {
         'mw_hash': sha3_256(in_str.encode()).hexdigest(),
-        #'nonce': noise
     }
 
 
